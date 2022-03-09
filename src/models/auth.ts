@@ -28,29 +28,37 @@ const AuthModel: IAuthModelType = {
 
   effects: {
     *login({ payload }, { call, put }) {
-      console.log('payload', payload);
+      request('auth/login', { data: payload })
+        .then((res) => {
+          console.log('effects login', res);
+          localStorage.setItem(AUTHORIZATION, res.data.token.access_token);
+        })
+        .catch((err) => console.log('err', err));
       // 请求登录
-      const { code, data } = yield call(services.login, payload);
-      if (code === 0) {
-        // 保存token到本地
-        localStorage.setItem(AUTHORIZATION, data.token.access_token);
-        // 更新state
-        yield put({
-          type: 'setState',
-          payload: {
-            user: data.user,
-            permissions: data.permissions,
-          },
-        });
-        // 跳转
-        history.push('/welcome');
-      }
+      // const { code, data } = yield call(services.login, payload);
+      // console.log('login effects', code, data);
+      // if (code === 0) {
+      //   // 保存token到本地
+      //   localStorage.setItem(AUTHORIZATION, data.token.access_token);
+      //   // 更新state
+      //   yield put({
+      //     type: 'setState',
+      //     payload: {
+      //       user: data.user,
+      //       permissions: data.permissions,
+      //     },
+      //   });
+      //   // 跳转
+      //   history.push('/welcome');
+      // }
     },
   },
   reducers: {
-    setState: (payload: IAuthModelState | undefined) => {
+    setState: (state, action) => {
+      console.log('action', action);
       return {
-        ...payload,
+        ...state,
+        ...action,
       };
     },
   },

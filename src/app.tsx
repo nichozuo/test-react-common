@@ -6,14 +6,14 @@ import type { RequestConfig } from 'umi';
 export const request: RequestConfig = {
   timeout: 20000,
   method: 'POST',
-  prefix: 'https://pulin-test.vankeservice.com/newfang/services/api/admin/',
+  prefix: process.env.BASE_URL,
   errorHandler: (res: any) => {
     const { code, message: errorMessage, showType } = res || {};
     if (!code && code !== 0) {
       // 没有响应的情况
       const dispatch = getDvaApp()?._store?.dispatch;
       dispatch({
-        type: 'count/subCount',
+        type: 'request/subCount',
       });
     }
     switch (showType) {
@@ -42,19 +42,18 @@ export const request: RequestConfig = {
         message.error(errorMessage);
         break;
     }
+    // console.log('errorHandler', res);
     return Promise.reject({ message: '服务异常' });
   },
   requestInterceptors: [
     (url, options) => {
       const dispatch = getDvaApp()?._store?.dispatch;
+      const token = localStorage.getItem(AUTHORIZATION) as string;
       if (dispatch) {
         dispatch({
-          type: 'count/addCount',
+          type: 'request/addCount',
         });
       }
-
-      const token = localStorage.getItem(AUTHORIZATION) as string;
-
       return {
         url: url,
         options: { ...options, headers: { authorization: 'Bearer ' + token } },
@@ -66,7 +65,7 @@ export const request: RequestConfig = {
       const dispatch = getDvaApp()?._store?.dispatch;
       if (dispatch) {
         dispatch({
-          type: 'count/subCount',
+          type: 'request/subCount',
         });
       }
 

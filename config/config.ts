@@ -1,4 +1,6 @@
 import { defineConfig } from 'umi';
+import env from './envs';
+import proxy from './proxy';
 
 export default defineConfig({
   nodeModulesTransform: {

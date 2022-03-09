@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'umi';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const count = useSelector<ICountState>(({ count }) => count.count);
+  const count = useSelector<IModelState>(({ request }) => request.count);
+
+  console.log(process.env);
   const doLogin = (values: any) => {
-    console.log('values', values);
     dispatch({ type: 'auth/login', payload: values });
     return Promise.resolve();
   };
@@ -16,7 +17,7 @@ const Login = () => {
       doLogin={doLogin}
       footer={
         <>
-          {count}
+          count::{count}:: :::{process.env.TOKEN_NAME}:::
           <span>粤ICP备2021008767号</span> Copyright ©2021-2022
           深圳市居有屋有限公司
         </>
