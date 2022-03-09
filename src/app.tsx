@@ -104,15 +104,12 @@ export const request: RequestConfig = {
 //   return undefined;
 // };
 
-// export async function getInitialState(): Promise<any> {
-//   // 如果是登录页面，不执行
-//   // if (history.location.pathname !== '/login') {
-//   //   const res = await me();
-//   //   // console.log('me res', res);
-//   //   return {
-//   //     user: res.user,
-//   //     permissions: res.permissions,
-//   //   };
-//   // }
-//   return {};
-// }
+export async function getInitialState(): Promise<any> {
+  // 如果是登录页面，不执行
+  if (history.location.pathname !== '/login') {
+    const dispatch = getDvaApp()?._store?.dispatch;
+    console.log('getInitialState');
+    dispatch({ type: 'auth/me' });
+  }
+  return {};
+}

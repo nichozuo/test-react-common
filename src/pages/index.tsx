@@ -1,6 +1,6 @@
 import { MyDeleteButton, MyEditButton } from '@nichozuo/react-common';
 
-export default function IndexPage() {
+export default () => {
   return (
     <div>
       <MyEditButton onClick={() => console.log('clicked')} />
@@ -10,6 +10,7 @@ export default function IndexPage() {
         }}
       />
       <h1>Page index</h1>
+      UMI_ENV:::{process.env.ENV}:::
     </div>
   );
-}
+};

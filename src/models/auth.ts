@@ -7,15 +7,11 @@ type IAuthModelType = {
   effects: {
     login: Effect;
     // logout: Effect;
-    // me: Effect;
+    me: Effect;
   };
   reducers: {
     setState: Reducer<IAuthModelState>;
   };
-};
-
-const services = {
-  login: (payload: any) => request('auth/login', { data: payload }),
 };
 
 const AuthModel: IAuthModelType = {
@@ -51,6 +47,14 @@ const AuthModel: IAuthModelType = {
       //   // 跳转
       //   history.push('/welcome');
       // }
+    },
+    *me({ _ }, { call, put }) {
+      console.log('effects me');
+      request('auth/me')
+        .then((res) => {
+          localStorage.setItem(AUTHORIZATION, res.data.token.access_token);
+        })
+        .catch((err) => console.log('err', err));
     },
   },
   reducers: {
