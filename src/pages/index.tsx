@@ -1,4 +1,6 @@
 import { MyDeleteButton, MyEditButton } from '@nichozuo/react-common';
+import { Link } from 'umi';
+import { Button } from 'antd';
 
 export default () => {
   return (
@@ -9,7 +11,12 @@ export default () => {
           console.log('onConfirm');
         }}
       />
-      <h1>Page index</h1>
+      <Link to="/login">
+        <Button>login</Button>
+      </Link>
+      <Link to="/welcome">
+        <Button>welcome</Button>
+      </Link>
       UMI_ENV:::{process.env.ENV}:::
     </div>
   );

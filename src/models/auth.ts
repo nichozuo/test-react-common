@@ -1,5 +1,4 @@
 import { Effect, Reducer, request, history } from 'umi';
-import { AUTHORIZATION } from '@/constants/storage';
 
 type IAuthModelType = {
   namespace: 'auth';
@@ -14,6 +13,8 @@ type IAuthModelType = {
   };
 };
 
+const TOKEN_NAME = process.env.TOKEN_NAME as string;
+
 const AuthModel: IAuthModelType = {
   namespace: 'auth',
 
@@ -24,45 +25,35 @@ const AuthModel: IAuthModelType = {
 
   effects: {
     *login({ payload }, { call, put }) {
-      request('auth/login', { data: payload })
-        .then((res) => {
-          console.log('effects login', res);
-          localStorage.setItem(AUTHORIZATION, res.data.token.access_token);
-        })
-        .catch((err) => console.log('err', err));
-      // 请求登录
-      // const { code, data } = yield call(services.login, payload);
-      // console.log('login effects', code, data);
-      // if (code === 0) {
-      //   // 保存token到本地
-      //   localStorage.setItem(AUTHORIZATION, data.token.access_token);
-      //   // 更新state
-      //   yield put({
-      //     type: 'setState',
-      //     payload: {
-      //       user: data.user,
-      //       permissions: data.permissions,
-      //     },
-      //   });
-      //   // 跳转
-      //   history.push('/welcome');
-      // }
+      const { code, data } = yield call(() =>
+        request('auth/login', { data: payload }),
+      );
+      if (code == 0) {
+        localStorage.setItem(TOKEN_NAME, data.token.access_token);
+        yield put({
+          type: 'setState',
+          payload: data,
+        });
+        history.push('/welcome');
+      }
     },
     *me({ _ }, { call, put }) {
-      console.log('effects me');
-      request('auth/me')
-        .then((res) => {
-          localStorage.setItem(AUTHORIZATION, res.data.token.access_token);
-        })
-        .catch((err) => console.log('err', err));
+      const { code, data } = yield call(() => request('auth/me'));
+      if (code == 0) {
+        yield put({
+          type: 'setState',
+          payload: data,
+        });
+        if (['', '/', '/login'].includes(history.location.pathname))
+          history.push('/welcome');
+      }
     },
   },
   reducers: {
-    setState: (state, action) => {
-      console.log('action', action);
+    setState: (_, { payload }) => {
       return {
-        ...state,
-        ...action,
+        user: payload.user,
+        permissions: payload.permissions,
       };
     },
   },

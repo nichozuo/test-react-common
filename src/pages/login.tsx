@@ -1,5 +1,5 @@
 import { Login1 } from '@nichozuo/react-common';
-import { useDispatch, useSelector } from 'umi';
+import { useDispatch } from 'umi';
 
 const Login = () => {
   const dispatch = useDispatch();

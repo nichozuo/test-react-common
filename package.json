@@ -23,13 +23,16 @@
     "@ant-design/pro-form": "^1.57.0",
     "@ant-design/pro-layout": "^6.5.0",
     "@nichozuo/react-common": "file:.yalc/@nichozuo/react-common",
+    "ahooks": "^3.1.13",
     "dva": "2.6.0-beta.22",
+    "lodash": "^4.17.21",
     "react": "17.x",
     "react-dev-inspector": "^1.7.1",
     "react-dom": "17.x",
     "umi": "^3.5.21"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.179",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@umijs/plugin-esbuild": "^1.4.1",
