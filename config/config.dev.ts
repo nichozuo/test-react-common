@@ -9,7 +9,8 @@ export default defineConfig({
   },
   proxy: {
     '/api/': {
-      target: 'https://pulin-test.vankeservice.com/newfang/services/',
+      // target: 'https://pulin-test.vankeservice.com/newfang/services/',
+      target: 'http://127.0.0.1:8000/',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
@@ -20,4 +21,5 @@ export default defineConfig({
     babelPlugins: [],
     babelOptions: {},
   },
+  devtool: 'source-map',
 });

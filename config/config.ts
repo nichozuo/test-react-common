@@ -15,4 +15,7 @@ export default defineConfig({
   mfsu: false,
   webpack5: {},
   esbuild: {},
+  history: {
+    type: 'hash',
+  },
 });

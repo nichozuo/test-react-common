@@ -1,12 +1,13 @@
 import { Effect, Reducer, request, history } from 'umi';
+import { message } from 'antd';
 
 type IAuthModelType = {
   namespace: 'auth';
   state: IAuthModelState;
   effects: {
     login: Effect;
-    // logout: Effect;
     me: Effect;
+    logout: Effect;
   };
   reducers: {
     setState: Reducer<IAuthModelState>;
@@ -25,28 +26,57 @@ const AuthModel: IAuthModelType = {
 
   effects: {
     *login({ payload }, { call, put }) {
-      const { code, data } = yield call(() =>
-        request('auth/login', { data: payload }),
-      );
-      if (code == 0) {
-        localStorage.setItem(TOKEN_NAME, data.token.access_token);
+      const res = yield call(async () => {
+        try {
+          const res = await request('auth/login', { data: payload });
+          return res;
+        } catch {
+          return undefined;
+        }
+      });
+
+      console.log('login effect res:::', res);
+      if (res) {
+        localStorage.setItem(TOKEN_NAME, res.data.token.access_token);
         yield put({
           type: 'setState',
-          payload: data,
+          payload: res.data,
         });
+        message.success('登录成功！');
         history.push('/welcome');
       }
     },
     *me({ _ }, { call, put }) {
-      const { code, data } = yield call(() => request('auth/me'));
-      if (code == 0) {
+      const res = yield call(async () => {
+        try {
+          const res = await request('auth/me');
+          return res;
+        } catch {
+          return undefined;
+        }
+      });
+
+      console.log('me effect res', res);
+      if (res) {
         yield put({
           type: 'setState',
-          payload: data,
+          payload: res.data,
         });
         if (['', '/', '/login'].includes(history.location.pathname))
           history.push('/welcome');
       }
+    },
+    *logout({ _ }, { _1, put }) {
+      localStorage.removeItem(TOKEN_NAME);
+      yield put({
+        type: 'setState',
+        payload: {
+          user: undefined,
+          permissions: [],
+        },
+      });
+      message.success('您已退出系统，感谢您的使用！');
+      history.push('/login');
     },
   },
   reducers: {
