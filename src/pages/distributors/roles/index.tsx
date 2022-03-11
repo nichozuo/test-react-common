@@ -1,8 +1,9 @@
 import { usePage } from '@/hooks/usePage';
 import { QueryFilter, ProFormText } from '@ant-design/pro-form';
 import { PageContainer } from '@ant-design/pro-layout';
-import ProTable from '@ant-design/pro-table';
+import ProTable, { ProColumns } from '@ant-design/pro-table';
 import {
+  MyDeleteButton,
   MyEditButton,
   MyModal,
   MyPagination,
@@ -10,9 +11,16 @@ import {
   MyStatistic,
 } from '@nichozuo/react-common';
 import { Button } from 'antd';
+import { useState } from 'react';
+import Create from './modals/Create';
+import Update from './modals/Update';
 
 export default () => {
-  const { pagination, statistic, search, table, modal } = usePage();
+  const { pagination, statistic, search, table, modal, actions } = usePage({
+    baseUri: 'sys_roles',
+  });
+
+  const [item, setItem] = useState();
 
   const tableProps = {
     columns: [
@@ -32,6 +40,7 @@ export default () => {
           <Button
             key="edit"
             type="primary"
+            size="small"
             // onClick={() => {
             //   modalRef.current?.showModal({
             //     type: 'permission',
@@ -55,26 +64,40 @@ export default () => {
         dataIndex: 'updated_at',
       },
       {
-        title: '操作',
-        key: 'action',
-        valueType: 'option',
-        render: (_: any, record: any) => [
-          <MyEditButton
-            onClick={() => {
-              //   modalRef.current?.showModal({
-              //     type: 'update',
-              //     title: '编辑角色',
-              //   });
-              //   setUpdateData(record);
-            }}
-          />,
+        title: '启/禁用',
+        align: 'center',
+        render: (_: any, record: any) => (
           <MySoftDeleteButton
             deleted_at={record.deleted_at}
             onConfirm={() => console.log('onConfirm')}
+          />
+        ),
+      },
+      {
+        title: '操作',
+        key: 'action',
+        valueType: 'option',
+        align: 'right',
+        render: (_: any, record: any) => [
+          <MyEditButton
+            key={'edit' + record.id}
+            onClick={() => {
+              setItem(record);
+              modal.ref.current?.showModal({
+                type: 'update',
+                title: '编辑角色',
+              });
+            }}
+          />,
+          <MyDeleteButton
+            key={'delete' + record.id}
+            onConfirm={() => {
+              actions.delete({ id: record.id });
+            }}
           />,
         ],
       },
-    ] as any[],
+    ] as ProColumns<Record<string, any>, 'text'>[] | undefined,
     toolBarRender: () => [
       <Button
         key="add"
@@ -104,8 +127,8 @@ export default () => {
           <MyModal
             {...modal}
             content={{
-              create: <h1>create</h1>,
-              update: <h1>update</h1>,
+              create: <Create onFinish={actions.list} />,
+              update: <Update data={item} onFinish={actions.list} />,
               permission: <h1>permission</h1>,
             }}
           />
