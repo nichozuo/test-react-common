@@ -1,22 +1,22 @@
 import { Effect, Reducer, request, history } from 'umi';
 import { message } from 'antd';
 
-type IAuthModelType = {
+type ModelsAuthType = {
   namespace: 'auth';
-  state: IAuthModelState;
+  state: ModelsAuthStateType;
   effects: {
     login: Effect;
     me: Effect;
     logout: Effect;
   };
   reducers: {
-    setState: Reducer<IAuthModelState>;
+    setState: Reducer<ModelsAuthStateType>;
   };
 };
 
 const TOKEN_NAME = process.env.TOKEN_NAME as string;
 
-const AuthModel: IAuthModelType = {
+const AuthModel: ModelsAuthType = {
   namespace: 'auth',
 
   state: {
@@ -35,7 +35,7 @@ const AuthModel: IAuthModelType = {
         }
       });
 
-      console.log('login effect res:::', res);
+      // console.log('login effect res:::', res);
       if (res) {
         localStorage.setItem(TOKEN_NAME, res.data.token.access_token);
         yield put({
@@ -56,7 +56,7 @@ const AuthModel: IAuthModelType = {
         }
       });
 
-      console.log('me effect res', res);
+      // console.log('me effect res', res);
       if (res) {
         yield put({
           type: 'setState',

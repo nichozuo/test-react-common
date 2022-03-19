@@ -1,36 +1,62 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch, history } from 'umi';
-import { MyLayout } from '@nichozuo/react-common';
+import { MyLayout, MyLoading } from '@/common';
+import { useEffect, useState } from 'react';
+import { history, useDispatch, useSelector } from 'umi';
 
-export default (props: any) => {
+const Loading = () => {
+  const { request } = useSelector<ModelsState>((state) => state) as ModelsState;
+  return <MyLoading count={request.count} />;
+};
+
+const AdminLayout = (props: any) => {
+  // 是否已经登陆
+  const [hasLogin, setHasLogin] = useState(false);
+
   // init dva
   const dispatch = useDispatch();
-  const { auth, request } = useSelector<IModelState>(
-    (state) => state,
-  ) as IModelState;
+  const { auth } = useSelector<ModelsState>((state) => state) as ModelsState;
 
-  // initial login state
+  // 初始化auth state
   useEffect(() => {
-    if (history.location.pathname != '/login') dispatch({ type: 'auth/me' });
+    dispatch({ type: 'auth/me' });
   }, []);
 
-  // clic submenu
-  const onSubMenuClick = (url: string) => {
-    console.log(url);
-    history.push(url);
-  };
+  // auth rerender
+  useEffect(() => {
+    setHasLogin(auth.user != undefined);
+  }, [auth]);
+
+  return hasLogin ? (
+    <MyLayout
+      auth={{ user: auth.user, permissions: auth.permissions }}
+      onLogout={() => dispatch({ type: 'auth/logout' })}
+      onSubMenuClick={(url: string) => {
+        history.push(url);
+      }}
+    >
+      {props.children}
+    </MyLayout>
+  ) : null;
+};
+
+export default (props: any) => {
+  // 是否登录页
+  const [isLoginPage, setIsLoginPage] = useState(() => {
+    return history.location.pathname == '/login';
+  });
+
+  // 监控是否登录页
+  useEffect(() => {
+    setIsLoginPage(history.location.pathname == '/login');
+  }, [history.location.pathname]);
 
   return (
     <>
-      <MyLayout
-        auth={{ user: auth.user, permissions: auth.permissions }}
-        onLogout={() => dispatch({ type: 'auth/logout' })}
-        pathname={history.location.pathname}
-        count={request.count}
-        onSubMenuClick={onSubMenuClick}
-      >
-        {props.children}
-      </MyLayout>
+      <Loading />
+      {isLoginPage ? (
+        props.children
+      ) : (
+        <AdminLayout>{props.children}</AdminLayout>
+      )}
     </>
   );
 };

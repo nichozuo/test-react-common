@@ -21,7 +21,17 @@ const loading = {
   },
 };
 
-export default {
+export type ResponseDataType = {
+  code: number;
+  message: string;
+  description?: string | undefined;
+  type?: string | undefined;
+  data: any;
+  meta?: any;
+  additions?: any;
+};
+
+export const request = {
   timeout: 20000,
   method: 'POST',
   prefix: process.env.BASE_URL,
@@ -29,7 +39,7 @@ export default {
   errorHandler: (error: any) => {
     const { response } = error;
     if (response) {
-      const { code, message, description, type } = response;
+      const { code, message, description, type } = response as ResponseDataType;
       switch (type) {
         case '2':
           msg.error(message);

@@ -1,3 +1,3 @@
-import myRequest from './utils/request';
+import { request as requestConfig } from '@/common';
 
-export const request = myRequest;
+export const request = requestConfig;

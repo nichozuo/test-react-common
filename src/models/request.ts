@@ -1,11 +1,11 @@
 import { Reducer } from 'umi';
 
-type IRequestModelType = {
+type ModelRequestType = {
   namespace: 'request';
-  state: IRequestModelState;
+  state: ModelRequestStateType;
   reducers: {
-    addCount: Reducer<IRequestModelState>;
-    subCount: Reducer<IRequestModelState>;
+    addCount: Reducer<ModelRequestStateType>;
+    subCount: Reducer<ModelRequestStateType>;
   };
 };
 
@@ -28,4 +28,4 @@ export default {
         };
     },
   },
-} as IRequestModelType;
+} as ModelRequestType;

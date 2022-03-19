@@ -1,13 +1,13 @@
-type IModelState = {
-  auth: IAuthModelState;
-  request: IRequestModelState;
+type ModelsState = {
+  auth: ModelsAuthStateType;
+  request: ModelRequestStateType;
 };
 
-type IAuthModelState = {
+type ModelsAuthStateType = {
   user?: any;
   permissions?: any[];
 };
 
-type IRequestModelState = {
+type ModelRequestStateType = {
   count: number;
 };

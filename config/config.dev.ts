@@ -9,17 +9,10 @@ export default defineConfig({
   },
   proxy: {
     '/api/': {
-      target: 'https://pulin-test.vankeservice.com/newfang/services/',
-      // target: 'http://127.0.0.1:8000/',
+      // target: 'https://pulin-test.vankeservice.com/newfang/services/',
+      target: 'http://127.0.0.1:8000/',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
   },
-  plugins: ['react-dev-inspector/plugins/umi/react-inspector'],
-  inspectorConfig: {
-    exclude: [],
-    babelPlugins: [],
-    babelOptions: {},
-  },
-  devtool: 'source-map',
 });
