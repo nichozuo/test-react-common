@@ -1,5 +1,5 @@
-import { MyColorPicker, MyModalForm } from '@/common';
-import { MyModalDataContext } from '@/common/components/MyModal';
+import { MyColorPicker, MyModalForm } from '@nichozuo/react-common';
+import { MyModalDataContext } from '@nichozuo/react-common';
 import { ProFormInstance, ProFormText } from '@ant-design/pro-form';
 import { useContext, useEffect, useRef } from 'react';
 

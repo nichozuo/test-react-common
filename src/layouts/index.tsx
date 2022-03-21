@@ -1,4 +1,4 @@
-import { MyLayout, MyLoading } from '@/common';
+import { MyLayout, MyLoading } from '@nichozuo/react-common';
 import { useEffect, useState } from 'react';
 import { history, useDispatch, useSelector } from 'umi';
 

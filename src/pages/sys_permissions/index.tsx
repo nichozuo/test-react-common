@@ -1,13 +1,13 @@
-import { useActions } from '@/common';
-import { usePage } from '@/common';
+import { useActions } from '@nichozuo/react-common';
+import { usePage } from '@nichozuo/react-common';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable, { ProColumns } from '@ant-design/pro-table';
 import { Create } from './modals/Create';
 import { Update } from './modals/Update';
 import { request } from 'umi';
 import { message } from 'antd';
-import { MyIcon } from '@/common';
-import { MyButton } from '@/common';
+import { MyIcon } from '@nichozuo/react-common';
+import { MyButton } from '@nichozuo/react-common';
 import XTag from '@/components/XTag';
 
 export default () => {

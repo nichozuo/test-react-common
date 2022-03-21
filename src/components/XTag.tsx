@@ -1,4 +1,4 @@
-import { MyTag } from '@/common';
+import { MyTag } from '@nichozuo/react-common';
 
 const SysPermissionsType = ({ value }: { value: string }) => {
   return (

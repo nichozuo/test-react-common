@@ -1,5 +1,5 @@
-import { MyModalForm } from '@/common';
-import { MyModalDataContext } from '@/common';
+import { MyModalForm } from '@nichozuo/react-common';
+import { MyModalDataContext } from '@nichozuo/react-common';
 import XRadioGroup from '@/components/XRadioGroup';
 import XTreeSelect from '@/components/XTreeSelect';
 import {

@@ -1,4 +1,4 @@
-import { MyModalForm } from '@/common';
+import { MyModalForm } from '@nichozuo/react-common';
 import XRadioGroup from '@/components/XRadioGroup';
 import XTreeSelect from '@/components/XTreeSelect';
 import { ProFormSwitch, ProFormText } from '@ant-design/pro-form';

@@ -1,12 +1,12 @@
-import { useActions } from '@/common';
-import { usePage } from '@/common';
+import { useActions } from '@nichozuo/react-common';
+import { usePage } from '@nichozuo/react-common';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable, { ProColumns } from '@ant-design/pro-table';
 import { Create } from './modals/Create';
 import { Update } from './modals/Update';
-import { MyPagination } from '@/common';
+import { MyPagination } from '@nichozuo/react-common';
 import { ProFormText, QueryFilter } from '@ant-design/pro-form';
-import { MyButton } from '@/common';
+import { MyButton } from '@nichozuo/react-common';
 import { Tag } from 'antd';
 
 export default () => {

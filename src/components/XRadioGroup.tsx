@@ -1,4 +1,4 @@
-import { MyProFormRadioGroup } from '@/common';
+import { MyProFormRadioGroup } from '@nichozuo/react-common';
 
 const SysPermissionsType = () => {
   return (

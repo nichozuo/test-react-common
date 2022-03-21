@@ -1,5 +1,5 @@
-import { MyModalForm } from '@/common';
-import { MyModalDataContext } from '@/common';
+import { MyModalForm } from '@nichozuo/react-common';
+import { MyModalDataContext } from '@nichozuo/react-common';
 import XSelect from '@/components/XSelect';
 import { ProFormInstance, ProFormText } from '@ant-design/pro-form';
 import { useContext, useEffect, useRef } from 'react';

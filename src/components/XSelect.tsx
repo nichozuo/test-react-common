@@ -1,4 +1,4 @@
-import { MyProFormSelect } from '@/common';
+import { MyProFormSelect } from '@nichozuo/react-common';
 import { request } from 'umi';
 
 const SysRoles = () => {

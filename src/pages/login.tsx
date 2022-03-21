@@ -1,4 +1,4 @@
-import { MyLogin1 } from '@/common';
+import { MyLogin1 } from '@nichozuo/react-common';
 import { useDispatch } from 'umi';
 
 const Login = () => {

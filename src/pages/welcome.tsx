@@ -1,4 +1,4 @@
-import { MyColorPicker, MyModalForm } from '@/common';
+import { MyColorPicker, MyModalForm } from '@nichozuo/react-common';
 import XTree from '@/components/XTree';
 import { ProFormText } from '@ant-design/pro-form';
 import { Form, Input } from 'antd';

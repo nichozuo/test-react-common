@@ -1,4 +1,4 @@
-import { MyColorPicker, MyModalForm } from '@/common';
+import { MyColorPicker, MyModalForm } from '@nichozuo/react-common';
 import { ProFormText } from '@ant-design/pro-form';
 
 export const Create = (props: any) => {

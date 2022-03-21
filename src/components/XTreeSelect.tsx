@@ -1,4 +1,4 @@
-import { MyProFormTreeSelect } from '@/common';
+import { MyProFormTreeSelect } from '@nichozuo/react-common';
 import { request } from 'umi';
 
 const SysPermissions = () => {

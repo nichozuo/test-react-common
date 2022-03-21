@@ -1,4 +1,4 @@
-import { MyProFormTree } from '@/common';
+import { MyProFormTree } from '@nichozuo/react-common';
 import { ProFormFieldItemProps } from '@ant-design/pro-form/lib/interface';
 import { Form } from 'antd';
 import { useEffect, useState } from 'react';

@@ -1,5 +1,5 @@
-import { useActions } from '@/common';
-import { usePage } from '@/common';
+import { useActions } from '@nichozuo/react-common';
+import { usePage } from '@nichozuo/react-common';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable, { ProColumns } from '@ant-design/pro-table';
 import { Create } from './modals/Create';
@@ -9,7 +9,7 @@ import { message, Button, Tag } from 'antd';
 import { Permissions } from './modals/Permissions';
 import { ProFormText, QueryFilter } from '@ant-design/pro-form';
 import { PicRightOutlined } from '@ant-design/icons';
-import { MyButton, MyPagination } from '@/common';
+import { MyButton, MyPagination } from '@nichozuo/react-common';
 
 export default () => {
   const { resData, params, setParams, actions, modalRef } = useActions({
