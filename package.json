@@ -33,10 +33,12 @@
     "@umijs/plugin-esbuild": "^1.4.1",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.5.21",
+    "autoprefixer": "^9",
     "lint-staged": "^10.0.7",
+    "postcss": "^7",
     "prettier": "^2.2.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^4.1.2",
-    "windicss-webpack-plugin": "^1.6.7",
     "yorkie": "^2.0.0"
   }
 }

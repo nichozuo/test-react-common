@@ -64,7 +64,7 @@ export default () => {
       <XTree.SysPermissions name="permissions_id" label="勾选权限" />
 
       <ProFormText name="name" placeholder="角色名称" label="ProForm组件" />
-      <p className="text-7xl">
+      <p className="text-6xl">
         <a
           href="https://windicss.org/utilities/general/typography.html"
           target="_blank"
