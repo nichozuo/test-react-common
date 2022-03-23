@@ -1,7 +1,8 @@
 import { useActions } from '@nichozuo/react-common';
 import { usePage } from '@nichozuo/react-common';
 import { PageContainer } from '@ant-design/pro-layout';
-import ProTable, { ProColumns } from '@ant-design/pro-table';
+import type { ProColumns } from '@ant-design/pro-table';
+import ProTable from '@ant-design/pro-table';
 import { Create } from './modals/Create';
 import { Update } from './modals/Update';
 import { MyPagination } from '@nichozuo/react-common';
@@ -64,6 +65,7 @@ export default () => {
     ] as ProColumns<any, 'text'>[],
     toolBarRender: () => [
       <MyButton.Create
+        key="create"
         title="添加管理员"
         onClick={() =>
           modalRef.current?.showModal({
@@ -78,7 +80,7 @@ export default () => {
   return (
     <PageContainer
       title="管理员管理"
-      footer={[<MyPagination {...pagination} />]}
+      footer={[<MyPagination key="page" {...pagination} />]}
       content={
         <>
           <QueryFilter {...search}>

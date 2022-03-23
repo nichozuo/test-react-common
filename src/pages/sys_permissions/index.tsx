@@ -1,7 +1,8 @@
 import { useActions } from '@nichozuo/react-common';
 import { usePage } from '@nichozuo/react-common';
 import { PageContainer } from '@ant-design/pro-layout';
-import ProTable, { ProColumns } from '@ant-design/pro-table';
+import type { ProColumns } from '@ant-design/pro-table';
+import ProTable from '@ant-design/pro-table';
 import { Create } from './modals/Create';
 import { Update } from './modals/Update';
 import { request } from 'umi';
@@ -110,7 +111,7 @@ export default () => {
     ] as ProColumns<any, 'text'>[],
     toolBarRender: () => [
       <MyButton.Create
-        key="add"
+        key="create"
         title="新建菜单"
         onClick={() =>
           modalRef.current?.showModal({

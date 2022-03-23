@@ -32,6 +32,7 @@ const AdminLayout = (props: any) => {
       onSubMenuClick={(url: string) => {
         history.push(url);
       }}
+      fieldNames={{ label: 'name', value: 'id', children: 'children' }}
     >
       {props.children}
     </MyLayout>

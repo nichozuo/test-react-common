@@ -1,4 +1,4 @@
-import { Reducer } from 'umi';
+import type { Reducer } from 'umi';
 
 type ModelRequestType = {
   namespace: 'request';

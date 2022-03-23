@@ -1,4 +1,5 @@
-import { Effect, Reducer, request, history } from 'umi';
+import type { Effect, Reducer } from 'umi';
+import { request, history } from 'umi';
 import { message } from 'antd';
 
 type ModelsAuthType = {
@@ -28,8 +29,7 @@ const AuthModel: ModelsAuthType = {
     *login({ payload }, { call, put }) {
       const res = yield call(async () => {
         try {
-          const res = await request('auth/login', { data: payload });
-          return res;
+          return await request('auth/login', { data: payload });
         } catch {
           return undefined;
         }
@@ -46,11 +46,11 @@ const AuthModel: ModelsAuthType = {
         history.push('/welcome');
       }
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     *me({ _ }, { call, put }) {
       const res = yield call(async () => {
         try {
-          const res = await request('auth/me');
-          return res;
+          return await request('auth/me');
         } catch {
           return undefined;
         }
@@ -66,6 +66,7 @@ const AuthModel: ModelsAuthType = {
           history.push('/welcome');
       }
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     *logout({ _ }, { _1, put }) {
       localStorage.removeItem(TOKEN_NAME);
       yield put({

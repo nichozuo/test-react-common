@@ -2,11 +2,8 @@ import { MyModalForm } from '@nichozuo/react-common';
 import { MyModalDataContext } from '@nichozuo/react-common';
 import XRadioGroup from '@/components/XRadioGroup';
 import XTreeSelect from '@/components/XTreeSelect';
-import {
-  ProFormInstance,
-  ProFormSwitch,
-  ProFormText,
-} from '@ant-design/pro-form';
+import type { ProFormInstance } from '@ant-design/pro-form';
+import { ProFormSwitch, ProFormText } from '@ant-design/pro-form';
 import { useContext, useEffect, useRef } from 'react';
 
 export const Update = (props: any) => {

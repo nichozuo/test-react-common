@@ -21,12 +21,12 @@ const MyTest: React.FC<CustomerCtrlType> = ({
   });
 
   const onChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    var t = parseInt(e.target.value);
+    const t = parseInt(e.target.value);
     setNum1(t);
     onChange?.([t, num2]);
   };
   const onChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    var t = parseInt(e.target.value);
+    const t = parseInt(e.target.value);
     setNum2(t);
     onChange?.([num1, t]);
   };
