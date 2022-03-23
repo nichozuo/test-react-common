@@ -1,4 +1,5 @@
 import { defineConfig } from 'umi';
+import WindiCSSWebpackPlugin from 'windicss-webpack-plugin';
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -17,5 +18,8 @@ export default defineConfig({
   esbuild: {},
   history: {
     type: 'hash',
+  },
+  chainWebpack(config: any) {
+    config.plugin('windicss').use(WindiCSSWebpackPlugin);
   },
 });

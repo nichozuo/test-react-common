@@ -64,6 +64,15 @@ export default () => {
       <XTree.SysPermissions name="permissions_id" label="勾选权限" />
 
       <ProFormText name="name" placeholder="角色名称" label="ProForm组件" />
+      <p className="text-7xl">
+        <a
+          href="https://windicss.org/utilities/general/typography.html"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Click to visit WindiCSS
+        </a>
+      </p>
     </MyModalForm>
   );
 };
