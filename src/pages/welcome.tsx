@@ -3,6 +3,8 @@ import XTree from '@/components/XTree';
 import { ProFormText } from '@ant-design/pro-form';
 import { Form, Input } from 'antd';
 import { useState } from 'react';
+import { MyJsonEditor } from '@/components/XJsonEditor';
+import XSelect from '@/components/XSelect';
 
 type CustomerCtrlType = {
   value?: number[] | any[];
@@ -39,12 +41,14 @@ const MyTest: React.FC<CustomerCtrlType> = ({
   );
 };
 export default () => {
+  const [type, setType] = useState('普通活动');
   return (
     <MyModalForm
       initialValues={{
         ctrl2: [1234, 4321],
         permissions_id: [7],
         color: 'white',
+        type: '普通活动',
       }}
       onFinish={(values: any) => {
         console.log(values);
@@ -57,6 +61,12 @@ export default () => {
 
       <Form.Item label="自定义简单组件" name="ctrl2">
         <MyTest />
+      </Form.Item>
+
+      <XSelect.JsonType onChange={setType} />
+
+      <Form.Item label="设置组件" name="ctrl3">
+        <MyJsonEditor type={type} />
       </Form.Item>
 
       <MyColorPicker name="color" label="选择颜色" />

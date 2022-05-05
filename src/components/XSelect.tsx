@@ -19,10 +19,44 @@ const SysRoles = () => {
   );
 };
 
+const JsonType = (props: any) => {
+  const doRequest = () => {
+    return [
+      {
+        id: '普通活动',
+        name: '普通活动',
+      },
+      {
+        id: '影子活动',
+        name: '影子活动',
+      },
+    ];
+  };
+
+  return (
+    <MyProFormSelect
+      name="type"
+      label="Json组件分类"
+      placeholder="请选择"
+      request={doRequest}
+      allowClear
+      fieldProps={{
+        fieldNames: {
+          label: 'name',
+          value: 'id',
+        },
+      }}
+      onChange={props.onChange}
+    />
+  );
+};
+
 const XSelect: {
   SysRoles: typeof SysRoles;
+  JsonType: typeof JsonType;
 } = {} as any;
 
 XSelect.SysRoles = SysRoles;
+XSelect.JsonType = JsonType;
 
 export default XSelect;

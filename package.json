@@ -21,12 +21,14 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
-    "@nichozuo/react-common": "file:.yalc/@nichozuo/react-common",
+    "@nichozuo/react-common": "0.0.7",
+    "ahooks": "^3.3.10",
     "react": "17.x",
     "react-dom": "17.x",
     "umi": "^3.5.21"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.182",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@umijs/fabric": "^2.10.2",
